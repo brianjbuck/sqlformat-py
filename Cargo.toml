@@ -1,0 +1,23 @@
+[package]
+name = "sqlformat-py"
+version = "0.1.1"
+authors = ["Brian Buck <brian@thebuckpasser.com>"]
+edition = "2018"
+license = "MIT"
+homepage = "https://github.com/brianjbuck/sqlformat-py"
+repository = "https://github.com/brianjbuck/sqlformat-py"
+documentation = "https://docs.rs/sqlformat"
+description = "Formats whitespace in a SQL string to make it easier to read"
+keywords = ["sql"]
+categories = ["development-tools"]
+
+[dependencies]
+sqlformat = "0.1.1"
+
+[lib]
+name = "sqlformat"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.12.1"
+features = ["extension-module"]
