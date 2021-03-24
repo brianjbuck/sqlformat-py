@@ -21,7 +21,6 @@ jobs:
       - name: Install cibuildwheel
         run: |
           python -m pip install cibuildwheel
-          python -m pip install -U setuptools wheel setuptools-rust
 
       - name: Install Rust Windows
         if: runner.os == 'Windows'
@@ -34,6 +33,7 @@ jobs:
 
       - name: Build wheels
         run: |
+          python -m pip install -U setuptools wheel setuptools-rust
           python -m cibuildwheel --output-dir wheelhouse
 
       - uses: actions/upload-artifact@v2
