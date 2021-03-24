@@ -6,6 +6,7 @@ jobs:
   build_wheels:
     env:
       CIBW_SKIP: "cp27-*"
+      CIBW_BEFORE_BUILD: pip install -U setuptools wheel setuptools-rust
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -35,7 +36,6 @@ jobs:
 
       - name: Build wheels
         run: |
-          pip install -U setuptools wheel setuptools-rust
           cibuildwheel --output-dir wheelhouse
 
       - uses: actions/upload-artifact@v2
