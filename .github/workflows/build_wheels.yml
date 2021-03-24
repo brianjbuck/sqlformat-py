@@ -9,6 +9,7 @@ jobs:
       CIBW_BEFORE_ALL_MACOS: "curl -sSf https://sh.rustup.rs | sh -s -- -y"
       CIBW_BEFORE_ALL_WINDOWS: "choco install rust -f -y"
       CIBW_BEFORE_ALL_LINUX: "curl -sSf https://sh.rustup.rs | sh -s -- -y"
+      CIBW_ENVIRONMENT: 'PATH="$PATH:$HOME/.cargo/bin"'
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -38,7 +39,6 @@ jobs:
 
       - name: Build wheels
         run: |
-          echo '$HOME/.cargo:$PATH' >> $GITHUB_ENV
           cibuildwheel --output-dir wheelhouse
 
       - uses: actions/upload-artifact@v2
