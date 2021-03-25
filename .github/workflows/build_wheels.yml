@@ -5,14 +5,18 @@ on: [push, pull_request]
 jobs:
   build_wheels:
     env:
-      # Don't try to build for Py2, PyPy, or 32-bit platforms
-      CIBW_SKIP: "cp27-* pp27-* pp36-* pp37-* *-win32 *_i686"
+      # Don't try to build for Python2 or PyPy.
+      CIBW_SKIP: "cp27-* pp27-* pp36-* pp37-*"
+      # Install the Rust toolchain into the cibuildwheel Docker container.
       CIBW_BEFORE_ALL_LINUX: "curl -sSf https://sh.rustup.rs | sh -s -- -y"
       CIBW_BEFORE_ALL_MACOS: "curl -sSf https://sh.rustup.rs | sh -s -- -y"
       CIBW_BEFORE_ALL_WINDOWS: "choco install rust -f -y"
+      # Set the Rust toolchain on the path inside the Docker container.
       CIBW_ENVIRONMENT: 'PATH="$PATH:$HOME/.cargo/bin"'
       CIBW_BUILD_VERBOSITY: 1
-      CIBW_MANYLINUX_X86_64_IMAGE: quay.io/pypa/manylinux2014_x86_64:latest
+    #   CIBW_MANYLINUX_X86_64_IMAGE: quay.io/pypa/manylinux2014_x86_64:latest
+      # Build all available 64-bit platforms.
+      CIBW_ARCHS: auto64
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
