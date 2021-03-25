@@ -36,8 +36,8 @@ jobs:
       # to manylinux1 and manylinux2010
       - name: Build Linux 2014 Wheels
         if: runner.os == 'Linux'
-          run: |
-            CIBW_MANYLINUX_X86_64_IMAGE=quay.io/pypa/manylinux2014_x86_64:latest cibuildwheel --output-dir wheelhouse
+        run: |
+          CIBW_MANYLINUX_X86_64_IMAGE=quay.io/pypa/manylinux2014_x86_64:latest cibuildwheel --output-dir wheelhouse
 
       - name: Build All Other Wheels
         run: |
