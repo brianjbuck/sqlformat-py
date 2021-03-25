@@ -34,8 +34,13 @@ jobs:
 
       - name: Build wheels
         run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+              CIBW_MANYLINUX_X86_64_IMAGE=quay.io/pypa/manylinux2014_x86_64:latest cibuildwheel --output-dir wheelhouse
+          fi
           cibuildwheel --output-dir wheelhouse
-          CIBW_MANYLINUX_X86_64_IMAGE=quay.io/pypa/manylinux2014_x86_64:latest cibuildwheel --output-dir wheelhouse
+
+
+
 
       - uses: actions/upload-artifact@v2
         with:
