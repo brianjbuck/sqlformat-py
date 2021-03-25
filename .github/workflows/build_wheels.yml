@@ -12,7 +12,7 @@ jobs:
       CIBW_BEFORE_ALL_WINDOWS: "choco install rust -f -y"
       CIBW_ENVIRONMENT: 'PATH="$PATH:$HOME/.cargo/bin"'
       CIBW_BUILD_VERBOSITY: 1
-      CIBW_MANYLINUX_X86_64_IMAGE: https://quay.io/repository/pypa/manylinux2014_x86_64:latest
+      CIBW_MANYLINUX_X86_64_IMAGE: quay.io/repository/pypa/manylinux2014_x86_64:latest
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
