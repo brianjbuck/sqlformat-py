@@ -32,13 +32,14 @@ jobs:
         run: |
           python -m pip install cibuildwheel
 
-      - name: Build Wheels
+      - name: Build Linux 2014 Wheels
+        if: runner.os == 'Linux'
+          run: |
+            CIBW_MANYLINUX_X86_64_IMAGE=quay.io/pypa/manylinux2014_x86_64:latest cibuildwheel --output-dir wheelhouse
+
+      - name: Build All Other Wheels
         run: |
-          if [ "$RUNNER_OS" == "Linux" ]; then
-              CIBW_MANYLINUX_X86_64_IMAGE=quay.io/pypa/manylinux2014_x86_64:latest cibuildwheel --output-dir wheelhouse
-          fi
           cibuildwheel --output-dir wheelhouse
-        shell: bash
 
       - uses: actions/upload-artifact@v2
         with:
