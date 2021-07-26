@@ -1,4 +1,7 @@
 # sqlformat-py
+
+[![Build](https://github.com/brianjbuck/sqlformat-py/actions/workflows/build_wheels.yml/badge.svg?branch=master)](https://github.com/brianjbuck/sqlformat-py/actions/workflows/build_wheels.yml)
+
 A Python wrapper around sqlformat-rs. (https://github.com/shssoichiro/sqlformat-rs)
 
 ```Python
