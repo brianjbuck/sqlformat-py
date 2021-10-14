@@ -4,6 +4,10 @@
 
 A Python wrapper around sqlformat-rs. (https://github.com/shssoichiro/sqlformat-rs)
 
+Supported Python Versions: 3.7+
+
+# Usage:
+
 ```Python
 >>> import sqlformat
 >>> print(sqlformat.format("SELECT * FROM TABLE_NAME"))
